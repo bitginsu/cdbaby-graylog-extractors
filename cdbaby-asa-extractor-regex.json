@@ -14,13 +14,178 @@
       ],
       "cursor_strategy": "copy",
       "extractor_config": {
-        "regex_value" : "^(\\w{3} \\d{2} \\d{4} \\d{2}:\\d{2}:\\d{2})"
+        "regex_value": "^(\\w{3} \\d{2} \\d{4} \\d{2}:\\d{2}:\\d{2})"
       },
       "extractor_type": "regex",
       "order": 0,
       "source_field": "message",
       "target_field": "timestamp",
       "title": "Timestamp via regex"
-    } ],
+    },
+    {
+      "condition_type": "string",
+      "condition_value": "%ASA",
+      "converters": [
+        {
+          "type": "numeric",
+          "config": {}
+        }
+      ],
+      "cursor_strategy": "copy",
+      "extractor_config": {
+        "regex_value": "^.*%ASA-\\d-(\\d+):"
+      },
+      "extractor_type": "regex",
+      "order": 0,
+      "source_field": "message",
+      "target_field": "syslog_id",
+      "title": "Cisco ASA Syslog ID"
+    },
+    {
+      "condition_type": "string",
+      "condition_value": "%ASA-4-106023",
+      "converters": [],
+      "cursor_strategy": "copy",
+      "extractor_config": {
+        "regex_value": "^.*%ASA-\\d-\\d+:\\s(\\w+)"
+      },
+      "extractor_type": "regex",
+      "order": 0,
+      "source_field": "message",
+      "target_field": "action_taken",
+      "title": "Cisco ASA Action Taken"
+    },
+    {
+      "condition_type": "string",
+      "condition_value": "%ASA-",
+      "converters": [],
+      "cursor_strategy": "copy",
+      "extractor_config": {
+        "regex_value": "^.*:\\d{2}\\s(\\w+)\\s"
+      },
+      "extractor_type": "regex",
+      "order": 0,
+      "source_field": "message",
+      "target_field": "source",
+      "title": "Cisco ASA Hostname"
+    },
+    {
+      "condition_type": "string",
+      "condition_value": "%ASA-4-106023",
+      "converters": [],
+      "cursor_strategy": "copy",
+      "extractor_config": {
+        "regex_value": "^.*%ASA-\\d-\\d+:\\s\\w+\\s(\\w+)\\s"
+      },
+      "extractor_type": "regex",
+      "order": 0,
+      "source_field": "message",
+      "target_field": "protocol",
+      "title": "Cisco ASA protocol"
+    },
+    {
+      "condition_type": "string",
+      "condition_value": "%ASA-4-106023",
+      "converters": [],
+      "cursor_strategy": "copy",
+      "extractor_config": {
+        "regex_value": "^.*\\sdst\\s\\w+:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/(\\d{1,5})?"
+      },
+      "extractor_type": "regex",
+      "order": 0,
+      "source_field": "message",
+      "target_field": "port_destination",
+      "title": "Cisco ASA Port: Destination"
+    },
+    {
+      "condition_type": "string",
+      "condition_value": "%ASA-4-106023",
+      "converters": [],
+      "cursor_strategy": "copy",
+      "extractor_config": {
+        "regex_value": "^.*\\sdst\\s(\\w+):\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}"
+      },
+      "extractor_type": "regex",
+      "order": 0,
+      "source_field": "message",
+      "target_field": "interface_destination",
+      "title": "Cisco ASA Interface: Destination"
+    },
+    {
+      "condition_type": "string",
+      "condition_value": "%ASA-4-106023",
+      "converters": [
+        {
+          "type": "numeric",
+          "config": {}
+        }
+      ],
+      "cursor_strategy": "copy",
+      "extractor_config": {
+        "regex_value": "^.*%ASA-\\d-\\d+:\\s\\w+\\s\\w+\\s\\w+\\s(\\w+):"
+      },
+      "extractor_type": "regex",
+      "order": 0,
+      "source_field": "message",
+      "target_field": "interface_source",
+      "title": "Cicso ASA Interface: Source"
+    },
+    {
+      "condition_type": "string",
+      "condition_value": "%ASA-4-106023",
+      "converters": [],
+      "cursor_strategy": "copy",
+      "extractor_config": {
+        "regex_value": "^.*\\sdst\\s\\w+:(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})"
+      },
+      "extractor_type": "regex",
+      "order": 0,
+      "source_field": "message",
+      "target_field": "ip_destination",
+      "title": "Cisco ASA IP: Destination"
+    },
+    {
+      "condition_type": "string",
+      "condition_value": "%ASA-4-106023",
+      "converters": [],
+      "cursor_strategy": "copy",
+      "extractor_config": {
+        "regex_value": "^.*%ASA-\\d-\\d+:\\s\\w+\\s\\w+\\s\\w+\\s\\w+:(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})"
+      },
+      "extractor_type": "regex",
+      "order": 0,
+      "source_field": "message",
+      "target_field": "ip_source",
+      "title": "Cisco ASA IP: Source"
+    },
+    {
+      "condition_type": "string",
+      "condition_value": "%ASA-4-106023",
+      "converters": [],
+      "cursor_strategy": "copy",
+      "extractor_config": {
+        "regex_value": "^.*%ASA-\\d-\\d+:\\s\\w+\\s\\w+\\s\\w+\\s\\w+:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/(\\d+)"
+      },
+      "extractor_type": "regex",
+      "order": 0,
+      "source_field": "message",
+      "target_field": "port_source",
+      "title": "Cisco ASA Port: Source"
+    },
+    {
+      "condition_type": "string",
+      "condition_value": "%ASA-4-106023",
+      "converters": [],
+      "cursor_strategy": "copy",
+      "extractor_config": {
+        "regex_value": "^.*\\sdst\\s\\w+:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/(?:\\d{1,5})?\\sby\\saccess-group\\s\\\"(\\w+)\\\"\\s"
+      },
+      "extractor_type": "regex",
+      "order": 0,
+      "source_field": "message",
+      "target_field": "access_group",
+      "title": "Cisco ASA Access Group (ACL) Triggered"
+    }
+  ],
   "version": "1.3.4 (0d67a80)"
 }
